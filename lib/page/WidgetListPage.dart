@@ -12,12 +12,13 @@ class WidgetListPage extends StatelessWidget {
       body: ListView(
         controller: ScrollController(),
         children: <Widget>[
-          const ListViewItem("A"),
-          const ListViewItem("B"),
-          const ListViewItem("C"),
-          const ListViewItem("D"),
-          const ListViewItem("E"),
-          const ListViewItem("F"),
+          ListTile(title: Text("ListView"), onTap: () => {
+
+          }),
+          const ListTile(title: Text("B")),
+          const ListTile(title: Text("C")),
+          const ListTile(title: Text("D")),
+          const ListTile(title: Text("E")),
         ],
       ),
     );
@@ -26,9 +27,13 @@ class WidgetListPage extends StatelessWidget {
 
 // Item
 class ListViewItem extends StatelessWidget {
+
   final String data;
 
-  const ListViewItem(this.data);
+  const ListViewItem(
+    this.data, {
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

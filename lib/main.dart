@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/NewRoute.dart';
 import 'package:flutter_demo/RandomWordsWidget.dart';
 import 'package:flutter_demo/page/WidgetListPage.dart';
+import 'package:flutter_demo/page/listview/ListViewPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         "new_page": (context) => NewRoute(),
         "new_word": (context) => RandomWordsWidget(),
         "widget_list": (context) => WidgetListPage(),
+        "widget_listview": (context) => ListViewPage(),
       },
       theme: ThemeData(
         // This is the theme of your application.
@@ -133,7 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FlatButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "widget_list");
+//                  Navigator.pushNamed(context, "widget_list");
+                  Navigator.pushNamed(context, "widget_listview");
                 },
                 child: Text("widget_list", style: Theme.of(context).textTheme.display1,)
             )

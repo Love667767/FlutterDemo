@@ -8,44 +8,75 @@ class ListViewPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("ListView Widget"),
       ),
-
-      body: ListViewWithDivider(),
+      body: InfiniteListView(),
     );
   }
 }
 
-class ListViewWithDivider extends StatelessWidget {
+class InfiniteListView extends StatefulWidget {
+  @override
+  ListViewState createState() {
+    return new ListViewState();
+  }
+}
 
-  Widget divider = Divider(height: 1, color: Colors.blue);
+class ListViewState extends State<InfiniteListView> {
+  static const loadingTag = "##loading##"; //表尾标记
+  var _words = <String>[loadingTag];
+
+  @override
+  void initState() {
+//    generateListData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        itemBuilder: (BuildContext context, int index) {
-          return new ListViewItem("$index");
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return divider;
-        },
-        itemCount: 100);
+        itemBuilder: (context, index) {
+          //如果到了表尾
+          if (_words[index] == loadingTag) {
+            //不足100条，继续获取数据
+            if (_words.length - 1 < 20) {
+              //获取数据
+              generateListData();
+              //加载时显示loading
+              return Container(
+                padding: const EdgeInsets.all(16.0),
+                alignment: Alignment.center,
+                child: SizedBox(
+                    width: 24.0,
+                    height: 24.0,
+                    child: CircularProgressIndicator(strokeWidth: 2.0)
+                ),
+              );
+            } else {
+              //已经加载了20条数据，不再获取数据。
+              return Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(16.0),
+                  child: Text("没有更多了", style: TextStyle(color: Colors.grey),)
+              );
+            }
+        }
+          //显示单词列表项
+        return ListTile(title: Text(_words[index]));
+    },
+    separatorBuilder: (context, index) => Divider(height: .0),
+    itemCount: _words.length);
   }
-}
 
-List<ListViewItem> generateListData() {
-  List<String> keys = new List();
-  keys.add("A");
-  keys.add("B");
-  keys.add("C");
-  keys.add("D");
-  keys.add("E");
-  keys.add("F");
-  keys.add("G");
-  keys.add("H");
-  keys.add("I");
-  keys.add("J");
-  keys.add("K");
-  keys.add("L");
+  List<ListViewItem> generateListData() {
+    List<String> strs = List();
+    strs.add("A");
+    strs.add("B");
+    strs.add("C");
+    strs.add("D");
+    Future.delayed(Duration(seconds: 2)).then((e) {
+      _words.insertAll(_words.length - 1, strs);
+      setState(() {
+//      _words = _words;
+      });
+    });
 
-  List<ListViewItem> items = new List();
-  keys.forEach((key) => items.add(ListViewItem(key)));
+  }
 }
