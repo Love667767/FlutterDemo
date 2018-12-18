@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/page/listview/item/ListViewItem.dart';
 
-class ListViewPage extends StatelessWidget {
+
+/**
+ * 下拉刷新
+ */
+class RefreshListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ListView Widget"),
+        title: Text("Refresh ListView Widget"),
       ),
       body: InfiniteListView(),
     );
@@ -57,20 +60,18 @@ class ListViewState extends State<InfiniteListView> {
                   child: Text("没有更多了", style: TextStyle(color: Colors.grey),)
               );
             }
-        }
+          }
           //显示单词列表项
 
-//        return ListTile(title: Text(_words[index]));
-        return ListTile(title: ListViewItem(_words[index]), onTap: () => Navigator.pushNamed(context, "widget_refresh"));
-    },
-    separatorBuilder: (context, index) => Divider(height: .0),
-    itemCount: _words.length);
+          return ListTile(title: Text(_words[index]));
+        },
+        separatorBuilder: (context, index) => Divider(height: .0),
+        itemCount: _words.length);
   }
 
-  List<ListViewItem> generateListData() {
+  void generateListData() {
     List<String> strs = List();
     strs.add("A");
-
     strs.add("B");
     strs.add("C");
     strs.add("D");
@@ -80,6 +81,5 @@ class ListViewState extends State<InfiniteListView> {
 //      _words = _words;
       });
     });
-
   }
 }
