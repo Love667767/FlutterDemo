@@ -20,7 +20,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   english_words: ^3.1.5
+  # 状态存储
   redux: ^3.0.0
+  # 网络请求
+  http: ^0.12.0
+  # SP存储
+  shared_preferences: ^0.4.3
 
 dev_dependencies:
   flutter_test:

@@ -3,10 +3,9 @@ import 'package:flutter_demo/page/HomePage.dart';
 import 'package:flutter_demo/page/WidgetListPage.dart';
 import 'package:flutter_demo/page/listview/ListViewPage.dart';
 import 'package:flutter_demo/page/refresh/RefreshListPage.dart';
-
+import 'package:flutter_demo/page/navigator/NavigationPage.dart';
 
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -14,11 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      routes: {
-        "widget_list": (context) => WidgetListPage(),
-        "widget_listview": (context) => ListViewPage(),
-        "widget_refresh": (context) => RefreshListPage(),
-      },
+      routes: _createRoutes(),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -34,7 +29,15 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+
+
+  Map<String, WidgetBuilder> _createRoutes() {
+    return {
+      "widget_list": (context) => WidgetListPage(),
+      "widget_listview": (context) => ListViewPage(),
+      "widget_refreshListView": (context) => RefreshListPage(),
+      "widget_bottomNavigationBar": (context) => NavigationPage(),
+
+    };
+  }
 }
-
-
-
