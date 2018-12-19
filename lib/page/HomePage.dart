@@ -27,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const RouteEntity("列表上拉加载", "widget_listview"),
     const RouteEntity("列表下拉刷新", "widget_refreshListView"),
     const RouteEntity("底部导航", "widget_bottomNavigationBar"),
+    const RouteEntity("轮播图", "widget_swiper"),
   ];
 
   @override
@@ -50,23 +51,20 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-
   Widget _createWidget(int index) {
-    return new Padding(
-      padding: EdgeInsets.all(20),
-      child: new GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, routes[index].route);
-          print("route_name: " + routes[index].name);
-        },
-        child: new Center(
-          child: new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            child: new Text(
-              routes[index].name,
-              style: TextStyle(color: Colors.black, fontSize: 25),
-            ),
+    return GestureDetector(
+      onTap: () {
+        print("route_name: " + routes[index].name);
+        Navigator.pushNamed(context, routes[index].route);
+      },
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(color: Colors.white),
+        child: new Padding(
+          padding: new EdgeInsets.all(15),
+          child: new Text(
+            routes[index].name,
+            style: TextStyle(color: Colors.green, fontSize: 25),
           ),
         ),
       ),

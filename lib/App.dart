@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_demo/page/HomePage.dart';
 import 'package:flutter_demo/page/WidgetListPage.dart';
 import 'package:flutter_demo/page/listview/ListViewPage.dart';
 import 'package:flutter_demo/page/refresh/RefreshListPage.dart';
 import 'package:flutter_demo/page/navigator/NavigationPage.dart';
+import 'package:flutter_demo/page/swiper/SplashPage.dart';
+
+
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      routes: _createRoutes(),
+      routes: _registerRoutes(),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,18 +31,21 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+//      home: SplashPage(),
+      home: MyHomePage(title: 'Flutter Demo',),
     );
   }
 
-
-  Map<String, WidgetBuilder> _createRoutes() {
+  Map<String, WidgetBuilder> _registerRoutes() {
     return {
+      "home": (context) => MyHomePage(
+            title: 'Flutter Demo',
+          ),
       "widget_list": (context) => WidgetListPage(),
       "widget_listview": (context) => ListViewPage(),
       "widget_refreshListView": (context) => RefreshListPage(),
       "widget_bottomNavigationBar": (context) => NavigationPage(),
-
+      "widget_swiper": (context) => SplashPage(),
     };
   }
 }
