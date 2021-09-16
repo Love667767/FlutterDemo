@@ -40,6 +40,7 @@ class _NavigationState extends State<NavigationPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: _pageView,
+      drawer: const Drawer(child: Text("Title")),
 
       bottomNavigationBar: new BottomNavigationBar(
         items: [

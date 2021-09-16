@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:flutter_demo/page/HomePage.dart';
 import 'package:flutter_demo/page/WidgetListPage.dart';
@@ -9,7 +10,10 @@ import 'package:flutter_demo/page/swiper/SplashPage.dart';
 
 
 
-void main() => runApp(MyApp());
+void main() {
+  debugPaintSizeEnabled = true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
 
